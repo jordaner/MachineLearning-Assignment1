@@ -21,7 +21,7 @@ while i<len(samples_sizes):
     #print(X_train.shape, y_train.shape)
     #print(X_test.shape, y_test.shape)
 
-    lm = linear_model.LinearRegression()
+    lm = linear_model.LinearRegression(normalize=True)
 
     #model = lm.fit(X_train,y_train)
     #predictions = lm.predict(X_test)
@@ -32,11 +32,12 @@ while i<len(samples_sizes):
 
     NMSE_results = NMSE_results * -1
 
-    print(NMSE_results)
+    RMS_results = np.sqrt(NMSE_results)
 
-    NMSE_results = np.sqrt(NMSE_results)
+    mean_error = RMS_results.mean()
 
-    print(NMSE_results)
+    print("Error with sample of size of ", samples_sizes[i]," = ",mean_error)
+
 
     i += 1
     # The coefficients
