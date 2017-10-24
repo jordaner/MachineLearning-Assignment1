@@ -10,7 +10,7 @@ features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningl
 i = 500
 while i<=500000000:
     # Load in the data with `read_csv()`
-    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, without noise.csv",sep=";",nrows = i)
+    df = pd.read_csv("path",sep=";",nrows = i)
 
     X = df.loc[:,features]
     y = df.Target

@@ -13,7 +13,7 @@ samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,1000
 i = 0
 while i<len(samples_sizes):
     # Load in the data with `read_csv()`
-    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, without noise.csv",sep=";",nrows = 100)
+    df = pd.read_csv("path",sep=";",nrows = 100)
 
     X = df.loc[:,features]
     y = df.Target
