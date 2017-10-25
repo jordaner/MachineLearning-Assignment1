@@ -16,7 +16,7 @@ while i<len(samples_sizes):
 
     df = pd.read_csv("path",sep=";",nrows = samples_sizes[i])
 
-    catnum = df["Target Class"].tolist()
+    catnum = df["Noisy Target Class"].tolist()
 
     X = df.loc[:,features]
     y_a = le.fit(catnum)
