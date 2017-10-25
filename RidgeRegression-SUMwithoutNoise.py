@@ -13,7 +13,7 @@ samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,1000
 i = 0
 while i<len(samples_sizes):
     # Load in the data with `read_csv()`
-    df = pd.read_csv("path",sep=";",nrows = 100)
+    df = pd.read_csv("path",sep=";",nrows = samples_sizes[i])
 
     X = df.loc[:,features]
     y = df.Target
@@ -32,6 +32,11 @@ while i<len(samples_sizes):
      #   X_train, X_test = X[train_index], X[test_index]
       #  y_train, y_test = y[train_index], y[test_index]
 
+
+  #  from sklearn.preprocessing import LabelEncoder
+  #  encoder = LabelEncoder()
+   # df["target_class"] = encoder.fit_transform(df["Target Class"])
+
     lm = linear_model.Ridge(normalize=True)
 
     NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
@@ -42,7 +47,16 @@ while i<len(samples_sizes):
 
     mean_error = RMS_results.mean()
 
-    print("Error with sample of size of ", samples_sizes[i], " = ", mean_error)
+
+    abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
+    abs_mean_error = abs_mean_error * -1
+    abs_mean_error = abs_mean_error.mean()
+
+
+    print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)
+
+    print("Error with sample size of ", samples_sizes[i], "for absolute mean error = ", abs_mean_error)
+
 
     i += 1
     #model = lm.fit(X_train,y_train)
