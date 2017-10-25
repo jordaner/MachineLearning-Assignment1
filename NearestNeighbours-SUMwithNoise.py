@@ -4,12 +4,11 @@ from sklearn.model_selection import cross_val_score,KFold
 from sklearn import preprocessing
 import pandas as pd
 import numpy as np
-from sklearn.metrics import fbeta_score, make_scorer
 from sklearn.metrics import precision_score
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
+from sklearn.metrics import fbeta_score, make_scorer
 from sklearn import neighbors, datasets
+
+#wine and housing data set tbh
 
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
@@ -19,9 +18,9 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithoutNoise",sep=";",nrows = samples_sizes[i])
+    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise",sep=";",nrows = samples_sizes[i])
 
-    catnum = df["Target Class"].tolist()
+    catnum = df["Noisy Target Class"].tolist()
 
     X = df.loc[:,features]
     y_a = le.fit(catnum)
@@ -41,5 +40,6 @@ while i<len(samples_sizes):
 
     print("Accuracy with sample of size of ", samples_sizes[i], " = ", mean_ACC)
     print("Precision Score with sample of size of ", samples_sizes[i], " = ", mean_PREC)
+
 
     i += 1
