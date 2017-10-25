@@ -40,7 +40,7 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    df = pd.read_csv("path",sep=",",nrows = samples_sizes[i])
+    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",",nrows = samples_sizes[i])
     X = df.loc[:,features]
     y = df.SalePrice
 
@@ -50,6 +50,9 @@ while i<len(samples_sizes):
         if "object" in str(X[column].dtype):
             X[column] = transformColumn(X[column])
     X = X.replace(np.nan,0)
+
+    for j in y:
+        j = j/ 100000
 
     kfold = KFold(n_splits=10, random_state=0)
     ACC_results = cross_val_score(lm, X, y, cv=kfold, scoring="accuracy")
