@@ -1,6 +1,9 @@
 from sklearn import linear_model
+from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, KFold,cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import fbeta_score, make_scorer
+from sklearn.metrics import precision_score
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
@@ -32,46 +35,32 @@ features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'MiscFeature',	'MiscVal',	'MoSold',	'YrSold',	'SaleType',	'SaleCondition']
 
 samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000,100000000]
+le = preprocessing.LabelEncoder()
 
 i = 0
 while i<len(samples_sizes):
 
     df = pd.read_csv("path",sep=",",nrows = samples_sizes[i])
     X = df.loc[:,features]
- #   print(X)
     y = df.SalePrice
 
-    # X_train, X_test, y_train, y_test, = train_test_split(X,y,test_size=0.3)
-
-    #print(X_train.shape, y_train.shape)
-    #print(X_test.shape, y_test.shape)
-
-
-
-   # encoder = LabelEncoder()
-    #df["target_class"] = encoder.fit_transform(df["SalePrice"].tolist())
-
-    lm = linear_model.LinearRegression(normalize=True)
+    lm = linear_model.LogisticRegression()
 
     for column in X:
         if "object" in str(X[column].dtype):
             X[column] = transformColumn(X[column])
-    X = X.dropna()
+    X = X.replace(np.nan,0)
 
-    NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
+    kfold = KFold(n_splits=10, random_state=0)
+    ACC_results = cross_val_score(lm, X, y, cv=kfold, scoring="accuracy")
 
-    NMSE_results = NMSE_results * -1
+    PREC_scorer = make_scorer(precision_score, average="weighted")
+    PREC_results = cross_val_score(lm, X, y, cv=kfold, scoring=PREC_scorer)
 
-    RMS_results = np.sqrt(NMSE_results)
+    mean_ACC = ACC_results.mean()
+    mean_PREC = PREC_results.mean()
 
-    mean_error = RMS_results.mean()
-
-    abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
-    abs_mean_error = abs_mean_error * -1
-    abs_mean_error = abs_mean_error.mean()
-
-    print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)
-
-    print("Error with sample size of ", samples_sizes[i], "for absolute mean error =", abs_mean_error)
+    print("Accuracy with sample of size of ", samples_sizes[i], " = ", mean_ACC)
+    print("Precision Score with sample of size of ", samples_sizes[i], " = ", mean_PREC)
 
     i += 1
