@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="452e2fc0-27c2-4cae-a0d5-475ef68b86d3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NearestNeighbours-SUMwithoutNoise.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LinearRegression-HousePrices.py" afterPath="$PROJECT_DIR$/LinearRegression-HousePrices.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RidgeRegression-HousePrices.py" afterPath="$PROJECT_DIR$/RidgeRegression-HousePrices.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LogisticRegression-HousePrices.py" afterPath="$PROJECT_DIR$/LogisticRegression-HousePrices.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,22 +17,48 @@
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LogisticRegression_SUMwithoutNoise.coverage" NAME="LogisticRegression-SUMwithoutNoise Coverage Results" MODIFIED="1508947945001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LinearRegression_WhiteWine.coverage" NAME="LinearRegression-WhiteWine Coverage Results" MODIFIED="1508950431935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$Ridge_Regression.coverage" NAME="Ridge Regression Coverage Results" MODIFIED="1508880950934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LinearRegression_SUMwithoutNoise.coverage" NAME="LinearRegression-SUMwithoutNoise Coverage Results" MODIFIED="1508942206521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LogisticRegression_SUMwithNoise.coverage" NAME="LogisticRegression-SUMwithNoise Coverage Results" MODIFIED="1508947412814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$RidgeRegression_SUMwithoutNoise.coverage" NAME="RidgeRegression-SUMwithoutNoise Coverage Results" MODIFIED="1508942583913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$RidgeRegression_SUMwithNoise.coverage" NAME="RidgeRegression-SUMwithNoise Coverage Results" MODIFIED="1508945106932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$RidgeRegression_WhiteWine.coverage" NAME="RidgeRegression-WhiteWine Coverage Results" MODIFIED="1508953487260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$NearestNeighbours_SUMwithoutNoise.coverage" NAME="NearestNeighbours-SUMwithoutNoise Coverage Results" MODIFIED="1508964239142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LinearRegression_SUMwithoutNoise.coverage" NAME="LinearRegression-SUMwithoutNoise Coverage Results" MODIFIED="1508942206521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LogisticRegression_HousePrices.coverage" NAME="LogisticRegression-HousePrices Coverage Results" MODIFIED="1508962531538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$RidgeRegression_HousePrices.coverage" NAME="RidgeRegression-HousePrices Coverage Results" MODIFIED="1508958814683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LinearRegression_SUMwithNoise.coverage" NAME="LinearRegression-SUMwithNoise Coverage Results" MODIFIED="1508941652374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$RidgeRegression_WhiteWine.coverage" NAME="RidgeRegression-WhiteWine Coverage Results" MODIFIED="1508953487260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MachineLearning_Assignment1$LinearRegression_HousePrices.coverage" NAME="LinearRegression-HousePrices Coverage Results" MODIFIED="1508958757874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LinearRegression-HousePrices.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LinearRegression-SUMwithoutNoise.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LinearRegression-SUMwithoutNoise.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="752">
+              <caret line="52" column="29" lean-forward="false" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LinearRegression-HousePrices.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LinearRegression-HousePrices.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+            <state relative-caret-position="585">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogisticRegression-HousePrices.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LogisticRegression-HousePrices.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="42" column="91" lean-forward="false" selection-start-line="42" selection-start-column="91" selection-end-line="42" selection-end-column="91" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -43,8 +69,8 @@
       <file leaf-file-name="RidgeRegression-HousePrices.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RidgeRegression-HousePrices.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+            <state relative-caret-position="585">
+              <caret line="39" column="91" lean-forward="true" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="91" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -55,10 +81,32 @@
       <file leaf-file-name="RidgeRegression-WhiteWine.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RidgeRegression-WhiteWine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-581">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="93" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogisticRegression-SUMwithoutNoise.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LogisticRegression-SUMwithoutNoise.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NearestNeighbours-SUMwithoutNoise.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NearestNeighbours-SUMwithoutNoise.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="137">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,8 +155,10 @@
         <option value="$PROJECT_DIR$/LogisticRegression-SUMwithoutNoise.py" />
         <option value="$PROJECT_DIR$/RidgeRegression-WhiteWine.py" />
         <option value="$PROJECT_DIR$/LinearRegression-WhiteWine.py" />
-        <option value="$PROJECT_DIR$/LinearRegression-HousePrices.py" />
         <option value="$PROJECT_DIR$/RidgeRegression-HousePrices.py" />
+        <option value="$PROJECT_DIR$/LinearRegression-HousePrices.py" />
+        <option value="$PROJECT_DIR$/LogisticRegression-HousePrices.py" />
+        <option value="$PROJECT_DIR$/NearestNeighbours-SUMwithoutNoise.py" />
       </list>
     </option>
   </component>
@@ -178,7 +228,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.RidgeRegression-HousePrices">
+  <component name="RunManager" selected="Python.NearestNeighbours-SUMwithoutNoise">
     <configuration name="LinearRegression-HousePrices" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -197,7 +247,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="LinearRegression-WhiteWine" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="LogisticRegression-HousePrices" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -210,12 +260,12 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="MachineLearning-Assignment1" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LinearRegression-WhiteWine.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LogisticRegression-HousePrices.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="LogisticRegression-SUMwithoutNoise" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="NearestNeighbours-SUMwithoutNoise" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -228,7 +278,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="MachineLearning-Assignment1" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LogisticRegression-SUMwithoutNoise.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NearestNeighbours-SUMwithoutNoise.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -270,19 +320,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.LogisticRegression-SUMwithoutNoise" />
-      <item index="1" class="java.lang.String" itemvalue="Python.LinearRegression-WhiteWine" />
-      <item index="2" class="java.lang.String" itemvalue="Python.RidgeRegression-WhiteWine" />
-      <item index="3" class="java.lang.String" itemvalue="Python.LinearRegression-HousePrices" />
-      <item index="4" class="java.lang.String" itemvalue="Python.RidgeRegression-HousePrices" />
+      <item index="0" class="java.lang.String" itemvalue="Python.RidgeRegression-WhiteWine" />
+      <item index="1" class="java.lang.String" itemvalue="Python.LinearRegression-HousePrices" />
+      <item index="2" class="java.lang.String" itemvalue="Python.RidgeRegression-HousePrices" />
+      <item index="3" class="java.lang.String" itemvalue="Python.LogisticRegression-HousePrices" />
+      <item index="4" class="java.lang.String" itemvalue="Python.NearestNeighbours-SUMwithoutNoise" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.RidgeRegression-HousePrices" />
-        <item index="1" class="java.lang.String" itemvalue="Python.LinearRegression-HousePrices" />
-        <item index="2" class="java.lang.String" itemvalue="Python.RidgeRegression-WhiteWine" />
-        <item index="3" class="java.lang.String" itemvalue="Python.LinearRegression-WhiteWine" />
-        <item index="4" class="java.lang.String" itemvalue="Python.LogisticRegression-SUMwithoutNoise" />
+        <item index="0" class="java.lang.String" itemvalue="Python.NearestNeighbours-SUMwithoutNoise" />
+        <item index="1" class="java.lang.String" itemvalue="Python.LogisticRegression-HousePrices" />
+        <item index="2" class="java.lang.String" itemvalue="Python.RidgeRegression-HousePrices" />
+        <item index="3" class="java.lang.String" itemvalue="Python.LinearRegression-HousePrices" />
+        <item index="4" class="java.lang.String" itemvalue="Python.RidgeRegression-WhiteWine" />
       </list>
     </recent_temporary>
   </component>
@@ -303,11 +353,11 @@
     <frame x="65" y="23" width="1048" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16125955" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3177481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5842105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29342106" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -390,7 +440,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
           <folding>
-            <element signature="e#0#32#0" expanded="false" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -467,7 +517,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
           <folding>
-            <element signature="e#0#32#0" expanded="false" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -524,7 +574,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="51" lean-forward="true" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
           <folding>
-            <element signature="e#0#32#0" expanded="false" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -618,23 +668,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LinearRegression-SUMwithoutNoise.py">
+    <entry file="file://$PROJECT_DIR$/LinearRegression-HousePrices.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="38" column="50" lean-forward="true" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+        <state relative-caret-position="585">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogisticRegression-HousePrices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="42" column="91" lean-forward="false" selection-start-line="42" selection-start-column="91" selection-end-line="42" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RidgeRegression-HousePrices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="91" lean-forward="true" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LogisticRegression-SUMwithoutNoise.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -650,28 +718,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RidgeRegression-WhiteWine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-581">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="93" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RidgeRegression-HousePrices.py">
+    <entry file="file://$PROJECT_DIR$/LinearRegression-SUMwithoutNoise.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+        <state relative-caret-position="752">
+          <caret line="52" column="29" lean-forward="false" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LinearRegression-HousePrices.py">
+    <entry file="file://$PROJECT_DIR$/NearestNeighbours-SUMwithoutNoise.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+        <state relative-caret-position="137">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
