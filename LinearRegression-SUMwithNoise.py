@@ -21,6 +21,11 @@ while i<len(samples_sizes):
     #print(X_train.shape, y_train.shape)
     #print(X_test.shape, y_test.shape)
 
+
+    from sklearn.preprocessing import LabelEncoder
+    encoder = LabelEncoder()
+    df["target_class"] = encoder.fit_transform(df["Target Class"])
+
     lm = linear_model.LinearRegression(normalize=True)
 
     #model = lm.fit(X_train,y_train)

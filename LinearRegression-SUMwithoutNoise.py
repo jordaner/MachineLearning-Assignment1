@@ -32,6 +32,10 @@ while i<len(samples_sizes):
      #   X_train, X_test = X[train_index], X[test_index]
       #  y_train, y_test = y[train_index], y[test_index]
 
+    from sklearn.preprocessing import LabelEncoder
+    encoder = LabelEncoder()
+    df["target_class"] = encoder.fit_transform(df["Target Class"])
+
     lm = linear_model.LinearRegression(normalize=True)
 
     NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
