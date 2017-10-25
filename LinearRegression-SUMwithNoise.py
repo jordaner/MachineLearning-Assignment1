@@ -22,9 +22,9 @@ while i<len(samples_sizes):
     #print(X_test.shape, y_test.shape)
 
 
-    from sklearn.preprocessing import LabelEncoder
-    encoder = LabelEncoder()
-    df["target_class"] = encoder.fit_transform(df["Target Class"])
+  #  from sklearn.preprocessing import LabelEncoder
+   # encoder = LabelEncoder()
+    #df["target_class"] = encoder.fit_transform(df["Target Class"])
 
     lm = linear_model.LinearRegression(normalize=True)
 
@@ -41,7 +41,17 @@ while i<len(samples_sizes):
 
     mean_error = RMS_results.mean()
 
-    print("Error with sample of size of ", samples_sizes[i]," = ",mean_error)
+
+    abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
+    abs_mean_error = abs_mean_error * -1
+    abs_mean_error = abs_mean_error.mean()
+
+
+    print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)
+
+    print("Error with sample size of ", samples_sizes[i], "for absolute mean error =", abs_mean_error)
+
+
 
 
     i += 1

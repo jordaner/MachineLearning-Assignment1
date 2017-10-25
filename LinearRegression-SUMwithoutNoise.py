@@ -4,6 +4,8 @@ from sklearn import linear_model
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
+from sklearn.metrics import mean_squared_log_error
+from sklearn.metrics import mean_absolute_error
 
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
@@ -13,12 +15,14 @@ samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,1000
 i = 0
 while i<len(samples_sizes):
     # Load in the data with `read_csv()`
-    df = pd.read_csv("path",sep=";",nrows = 100)
+    df = pd.read_csv("path",sep=";",nrows = samples_sizes[i])
 
     X = df.loc[:,features]
     y = df.Target
 
     regressionmetric = "neg_mean_squared_error"
+
+
 
     #X_train, X_test, y_train, y_test, = train_test_split(X,y,test_size=0.3)
 
@@ -46,7 +50,22 @@ while i<len(samples_sizes):
 
     mean_error = RMS_results.mean()
 
-    print("Error with sample of size of ", samples_sizes[i], " = ", mean_error)
+ #   NMSLE_results = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_log_error")
+
+ #   NMSLE_results = NMSLE_results * -1
+
+ #   MSLE_results = math.log(np.sqrt(MSLE_results))
+
+ #   mean_error2 = mean_squared_log_error(y, lm.predict(X))
+
+    abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
+    abs_mean_error = abs_mean_error * -1
+    abs_mean_error = abs_mean_error.mean()
+
+
+    print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)
+
+    print("Error with sample size of ", samples_sizes[i], "for absolute mean error =", abs_mean_error)
 
     i += 1
     #model = lm.fit(X_train,y_train)
