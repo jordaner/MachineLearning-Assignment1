@@ -9,6 +9,7 @@ from sklearn.preprocessing import LabelEncoder
 def transformColumn(column):
     transformed_list = LabelEncoder().fit_transform(column.tolist())
     transformed_series = pd.Series(data=transformed_list)
+    transformed_series = pd.Series(data=transformed_list)
     transformed_series.replace(np.NaN, 0)
     transformed_series.set_value(100, 2)
     return transformed_series
@@ -58,7 +59,7 @@ while i<len(samples_sizes):
     for column in X:
         if "object" in str(X[column].dtype):
             X[column] = transformColumn(X[column])
-    X = X.dropna()
+    X = X.replace(np.nan,0)
 
 
     #model = lm.fit(X_train,y_train)
