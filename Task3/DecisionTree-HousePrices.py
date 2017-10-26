@@ -34,10 +34,10 @@ features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
 
 samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000,100000000]
 
-df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=";",nrows = samples_sizes[0])
+df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/housing dataset.csv",sep=",",nrows = samples_sizes[0])
 
 X = df.loc[:,features]
-y = df["Noisy Target"]
+y = df.SalePrice
 
 clf = tree.DecisionTreeRegressor()
 clf = clf.fit(X, y)

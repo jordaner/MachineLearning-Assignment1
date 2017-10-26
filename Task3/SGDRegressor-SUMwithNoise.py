@@ -1,7 +1,7 @@
 # Source in api http://scikit-learn.org/stable/modules/svm.html#regression
 # datasets are: SUMwithNoise and HousePrices
 
-from sklearn import svm
+from sklearn import linear_model
 from sklearn.model_selection import cross_val_score, KFold
 import pandas as pd
 import numpy as np
@@ -28,25 +28,17 @@ while i<len(samples_sizes):
 
     df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise",sep=";",nrows = samples_sizes[i])
 
-
     X = df.loc[:,features]
-    X_train = X[:-30]
-    X_test = X[-30:]
-
     y = df["Noisy Target"]
-    y_train = y[:-30]
-    y_test = y[-30:]
 
-    clf = svm.SVC()
-    clf = clf.fit(X_train, y_train)
-
-    pred = clf.predict(X_test)
+    clf = linear_model.SGDRegressor()
+    clf = clf.fit(X, y)
 
    # kfold = KFold(n_splits = 10, random_state=0)
-  #  NMSE_results= cross_val_score(clf,X,y,cv = kfold,scoring="neg_mean_squared_error")
+    NMSE_results= cross_val_score(clf,X,y,cv=10,scoring="neg_mean_squared_error")
 
-   # mean_error = getrmse(NMSE_results)
+    mean_error = getrmse(NMSE_results)
 
-    print(pred.mean())
+    print(mean_error)
 
     i += 1
