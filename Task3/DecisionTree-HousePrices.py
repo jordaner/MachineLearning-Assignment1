@@ -68,5 +68,5 @@ while i < len(samples_sizes):
 
     mean_error = getrmse(NMSE_results)
 
-    print(mean_error)
+    print("Error with sample size",samples_sizes[i],"is",mean_error)
     i += 1
