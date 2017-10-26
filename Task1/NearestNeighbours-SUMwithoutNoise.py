@@ -19,7 +19,7 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithoutNoise",sep=";",nrows = samples_sizes[i])
+    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, without noise.csv",sep=";",nrows = samples_sizes[i])
 
     catnum = df["Target Class"].tolist()
 

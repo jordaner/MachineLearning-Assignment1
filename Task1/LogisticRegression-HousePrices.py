@@ -1,6 +1,6 @@
 from sklearn import linear_model
 from sklearn import preprocessing
-from sklearn.model_selection import train_test_split, KFold,cross_val_score
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.metrics import fbeta_score, make_scorer
 from sklearn.metrics import precision_score
@@ -45,7 +45,7 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/housing dataset.csv",sep=",",nrows = samples_sizes[i])
+    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",",nrows = samples_sizes[i])
     X = df.loc[:,features]
     y = df.SalePrice
 

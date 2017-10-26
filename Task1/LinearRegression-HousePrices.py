@@ -37,12 +37,10 @@ samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,1000
 i = 0
 while i<len(samples_sizes):
 
-
     df = pd.read_csv("path",sep=",",nrows = samples_sizes[i])
 
-
     X = df.loc[:,features]
- #   print(X)
+    # print(X)
     y = df.SalePrice
 
     #X_train, X_test, y_train, y_test, = train_test_split(X,y,test_size=0.3)
