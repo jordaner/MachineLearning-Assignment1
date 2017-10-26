@@ -20,15 +20,19 @@ features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningl
 
 samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000,100000000]
 
-df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise",sep=";",nrows = samples_sizes[0])
+i=0
+while i<len(samples_sizes):
+    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, with noise.csv",sep=";",nrows = samples_sizes[i])
 
-X = df.loc[:,features]
-y = df["Noisy Target"]
+    X = df.loc[:,features]
+    y = df["Noisy Target"]
 
-clf = tree.DecisionTreeRegressor()
-clf = clf.fit(X, y)
-NMSE_results= cross_val_score(clf,X,y,cv=10,scoring="neg_mean_squared_error")
+    clf = tree.DecisionTreeRegressor(max_depth=2)
+    clf = clf.fit(X, y)
+    NMSE_results= cross_val_score(clf,X,y,cv=10,scoring="neg_mean_squared_error")
 
-mean_error = getrmse(NMSE_results)
+    mean_error = getrmse(NMSE_results)
 
-print(mean_error)
+    print("RMS error with sample size of", samples_sizes[i],"is", mean_error)
+
+    i += 1
