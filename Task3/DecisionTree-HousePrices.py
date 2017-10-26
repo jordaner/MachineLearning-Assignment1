@@ -45,28 +45,37 @@ features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'EnclosedPorch',	'3SsnPorch',	'ScreenPorch',	'PoolArea',	'PoolQC',	'Fence',
             'MiscFeature',	'MiscVal',	'MoSold',	'YrSold',	'SaleType',	'SaleCondition']
 
-samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000,100000000]
+df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",",nrows = 10000)
+X = df.loc[:,features]
+y = df.SalePrice
 
-i = 0
-while i < len(samples_sizes):
-    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",",nrows = samples_sizes[0])
+model = tree.DecisionTreeRegressor()
+for column in X:
+    if "object" in str(X[column].dtype):
+        X[column] = transformColumn(X[column])
+X = X.replace(np.nan, 0)
 
-    X = df.loc[:,features]
-    y = df.SalePrice
+y = [transformValueToClassValue(i) for i in (y.tolist())]
+y = pd.Series(data=y)
 
-    clf = tree.DecisionTreeRegressor()
-    for column in X:
-        if "object" in str(X[column].dtype):
-            X[column] = transformColumn(X[column])
-    X = X.replace(np.nan, 0)
+model = model.fit(X, y)
+NMSE_results= cross_val_score(model,X,y,cv=10,scoring="neg_mean_squared_error")
 
-    y = [transformValueToClassValue(i) for i in (y.tolist())]
-    y = pd.Series(data=y)
+mean_error = getrmse(NMSE_results)
 
-    clf = clf.fit(X, y)
-    NMSE_results= cross_val_score(clf,X,y,cv=10,scoring="neg_mean_squared_error")
+abs_mean_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_absolute_error")
+abs_mean_error = abs_mean_error * -1
+abs_mean_error = abs_mean_error.mean()
 
-    mean_error = getrmse(NMSE_results)
+r2_score = cross_val_score(model, X, y, cv = 10, scoring = "r2")
+median_absolute_error = cross_val_score(model, X, y, cv = 10, scoring = "neg_median_absolute_error") * -1
+mean_squared_log_error = cross_val_score(model, X, y, cv = 10, scoring = "neg_mean_squared_log_error") * -1
 
-    print("Error with sample size",samples_sizes[i],"is",mean_error)
-    i += 1
+#print(mean_squared_log_error)
+#print(median_absolute_error)
+
+print("Mean squared log error with sample size of 10000 =", mean_squared_log_error.mean())
+print("Median absolute error with sample size of 10000 =", median_absolute_error.mean())
+print("R2 score with sample size of 10000 =", r2_score.mean())
+print("RMS error with sample size of 10000 =", mean_error)
+print("Absolute mean error with sample size of 10000 for absolute mean error =", abs_mean_error)
