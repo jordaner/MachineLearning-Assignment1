@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
 import scipy.stats as stats
-housing = pd.read_csv("C:\\Users\\Bernard\\Dropbox\\TCD\\CS4404\\Machine Learning Datasets\\House Prices\\housing dataset.csv",sep=";",nrows=10)
+housing = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/housing dataset.csv",sep=";",nrows=10)
 X, y = housing.data[:, :2], housing.target
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=33)
 scaler = preprocessing.StandardScaler().fit(X_train)
