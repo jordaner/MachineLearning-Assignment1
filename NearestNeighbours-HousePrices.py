@@ -7,7 +7,8 @@ from sklearn.metrics import precision_score
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
-from sklearn import neighbors, datasets
+from sklearn import neighbors
+
 
 def transformColumn(column):
     transformed_list = LabelEncoder().fit_transform(column.tolist())
@@ -16,6 +17,11 @@ def transformColumn(column):
     transformed_series.set_value(100, 2)
     return transformed_series
 
+def transformValueToClassValue(value):
+    if "str" in str(type(value)):
+        return value
+    else:
+        return round(value/100000)
 
 features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'Alley',	'LotShape',	'LandContour',	'Utilities',	'LotConfig',
@@ -51,8 +57,12 @@ while i<len(samples_sizes):
             X[column] = transformColumn(X[column])
     X = X.replace(np.nan,0)
 
-    for j in y:
-        j = j/ 100000
+
+    y = [transformValueToClassValue(i) for i in (y.tolist())]
+    y = pd.Series(data=y)
+
+
+
 
     kfold = KFold(n_splits=10, random_state=0)
     ACC_results = cross_val_score(lm, X, y, cv=kfold, scoring="accuracy")
