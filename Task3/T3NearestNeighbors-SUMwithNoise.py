@@ -9,37 +9,44 @@ import numpy as np
 from sklearn.metrics import precision_score
 from sklearn.metrics import fbeta_score, make_scorer
 from sklearn import neighbors, datasets
+from sklearn import neighbors
 
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
-samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000,100000000]
 le = preprocessing.LabelEncoder()
 
-i = 0
-while i<len(samples_sizes):
+#while i<len(samples_sizes):
 
-    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, with noise.csv",sep=";",nrows = samples_sizes[i])
+df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise",sep=";",nrows = 10000)
 
-    catnum = df["Noisy Target Class"].tolist()
+catnum = df["Noisy Target Class"].tolist()
 
-    X = df.loc[:,features]
-    y_a = le.fit(catnum)
-    y_b = le.transform(catnum)
+X = df.loc[:,features]
+y = df["Noisy Target"]
 
-    lr = neighbors.KNeighborsClassifier(len(samples_sizes))
-
-    #Needed to avoid members of target class being less that the number of folds
-    kfold = KFold(n_splits=10,random_state=0)
-    ACC_results = cross_val_score(lr, X, y_b, cv=kfold, scoring="accuracy")
-
-    PREC_scorer =  make_scorer(precision_score, average="weighted")
-    PREC_results = cross_val_score(lr, X, y_b, cv=kfold, scoring=PREC_scorer)
-
-    mean_ACC = ACC_results.mean()
-    mean_PREC = PREC_results.mean()
-
-    print("Accuracy with sample of size of ", samples_sizes[i], " = ", mean_ACC)
-    print("Precision Score with sample of size of ", samples_sizes[i], " = ", mean_PREC)
+n_neighbors = 5
 
 
-    i += 1
+for i, weights in enumerate(['uniform', 'distance']):
+    lr = neighbors.KNeighborsRegressor(n_neighbors, weights=weights)
+
+#Needed to avoid members of target class being less that the number of folds
+NMSE_results = cross_val_score(lr, X, y, cv=10,
+                                   scoring="neg_mean_squared_error")  # Choose another regression metric
+
+NMSE_results = NMSE_results * -1
+
+RMS_results = np.sqrt(NMSE_results)
+
+mean_error = RMS_results.mean()
+
+abs_mean_error = cross_val_score(lr, X, y, cv=10, scoring="neg_mean_absolute_error")
+abs_mean_error = abs_mean_error * -1
+abs_mean_error = abs_mean_error.mean()
+
+print("Error with sample size of 10000 for mean squared error = ", mean_error)
+
+print("Error with sample size of 10000 for absolute mean error =", abs_mean_error)
+
+
+ #   i += 1
