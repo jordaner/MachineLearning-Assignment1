@@ -61,9 +61,6 @@ while i<len(samples_sizes):
     y = [transformValueToClassValue(i) for i in (y.tolist())]
     y = pd.Series(data=y)
 
-
-
-
     kfold = KFold(n_splits=10, random_state=0)
     ACC_results = cross_val_score(lm, X, y, cv=kfold, scoring="accuracy")
 
