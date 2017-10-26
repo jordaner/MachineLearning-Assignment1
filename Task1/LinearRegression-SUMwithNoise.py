@@ -19,19 +19,14 @@ while i<len(samples_sizes):
     lm = linear_model.LinearRegression(normalize=True)
 
     NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
-
     NMSE_results = NMSE_results * -1
-
     RMS_results = np.sqrt(NMSE_results)
-
     mean_error = RMS_results.mean()
-
     abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
     abs_mean_error = abs_mean_error * -1
     abs_mean_error = abs_mean_error.mean()
 
     print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)
-
     print("Error with sample size of ", samples_sizes[i], "for absolute mean error =", abs_mean_error)
 
     i += 1

@@ -5,40 +5,50 @@ from sklearn import linear_model
 from sklearn.model_selection import cross_val_score, KFold
 import pandas as pd
 import numpy as np
-
-
-
-
-def getrmse(number):
-    number = number * -1
-
-    number = np.sqrt(number)
-
-    number = number.mean()
-    return number
+from sklearn.linear_model import SGDRegressor
 
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 
-samples_sizes= [100,500,1000,5000,10000,50000,100000,500000,1000000,5000000,10000000,50000000,100000000]
+df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise", sep=";")
 
-i = 0
+X = df.loc[:, features]
+Y = df["Noisy Target"]
+kf = KFold(n_splits=10)
 
-while i<len(samples_sizes):
 
-    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise",sep=";",nrows = samples_sizes[i])
+def evaluate(X, Y, kf):
+    linReg = LinearRegression()
+    svmReg = svm.SVR()
+    decTreeReg = tree.DecisionTreeRegressor()
+    sgdReg = SGDRegressor()
+    algos = np.array([linReg, svmReg, decTreeReg, sgdReg])
+    for i in range(0, algos.size):
+        print("ALGORITHM:", str(algos[i]))
+        abs_error = cross_val_score(algos[i], X, Y, cv = kf, scoring ='neg_mean_absolute_error')
+        mean_score = abs_error.mean()
+        print("mean absolute error:", -1 * mean_score)
 
-    X = df.loc[:,features]
-    y = df["Noisy Target"]
+        sq_error = cross_val_score(algos[i], X, Y, cv=kf, scoring='neg_mean_squared_error')
+        mean_sqerror = -1 * sq_error.mean()
+        print("mean squared error: ", np.sqrt(mean_sqerror))
 
-    clf = linear_model.SGDRegressor()
-    clf = clf.fit(X, y)
+        med_abs_error = cross_val_score(algos[i], X, Y, cv=kf, scoring='neg_median_absolute_error')
+        med_abs_error = -1 * med_abs_error
+        print("median absolute error: ", med_abs_error)
 
-   # kfold = KFold(n_splits = 10, random_state=0)
-    NMSE_results= cross_val_score(clf,X,y,cv=10,scoring="neg_mean_squared_error")
+        r2 = cross_val_score(algos[i], X, Y, cv=kf, scoring='r2')
+        print("r2: ",r2)
 
-    mean_error = getrmse(NMSE_results)
+        expl_var = cross_val_score(algos[i], X, Y, cv=kf, scoring='explained_variance')
+        print("explained var: ",expl_var)
 
-    print(mean_error)
 
-    i += 1
+sgd_regressor = SGDRegressor()
+abs_error = cross_val_score(sgd_regressor, X, Y, cv = kf, scoring ='neg_mean_absolute_error')
+mean_score = abs_error.mean()
+print("mean absolute error:", -1 * mean_score)
+
+
+
+

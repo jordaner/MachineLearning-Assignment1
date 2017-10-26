@@ -37,11 +37,8 @@ while i<len(samples_sizes):
     lm = linear_model.LinearRegression(normalize=True)
 
     NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
-
     NMSE_results = NMSE_results * -1
-
     RMS_results = np.sqrt(NMSE_results)
-
     mean_error = RMS_results.mean()
 
  #   NMSLE_results = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_log_error")
