@@ -7,11 +7,20 @@ import pandas as pd
 import numpy as np
 from sklearn import svm
 
+def normaliseScores(scores):
+    old_max = max(scores)
+    old_min = min(scores)
+    old_range = old_max - old_min
+    new_min = 0
+    new_max = 1
+    normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
+    return normalised_scores
+
 # features = ['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides']
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 
-df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, with noise.csv", sep=";")
+df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, with noise.csv", sep=";",nrows=10000)
 
 X = df.loc[:,features]
 Y = df["Noisy Target"]
@@ -46,9 +55,10 @@ def evaluate(X, Y, kf):
 
 
 svm_regressor = svm.SVR()
-abs_error = cross_val_score(svm_regressor, X, Y, cv = kf, scoring ='neg_mean_absolute_error')
+abs_error = cross_val_score(svm_regressor, X, Y, cv = kf, scoring ='neg_mean_absolute_error') * -1
+abs_error = normaliseScores(abs_error)
 mean_score = abs_error.mean()
-print("mean absolute error:", -1 * mean_score)
+print("mean absolute error:",  mean_score)
 
 
 

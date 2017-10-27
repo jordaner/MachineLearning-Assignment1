@@ -1,8 +1,10 @@
-from sklearn import tree, linear_model, neighbors
+from sklearn import tree, linear_model, neighbors, svm
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 import numpy as np
+import time
+
 
 def normaliseScores(scores):
     old_max = max(scores)
@@ -13,49 +15,58 @@ def normaliseScores(scores):
     normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
     return normalised_scores
 
+
 def executeAlgorithms(X, y):
     print("--- Decision Tree ---")
     model = tree.DecisionTreeRegressor()
     model = model.fit(X, y)
-    getErrors(model, X, y)
+    metricEvaluation(model, X, y)
 
     print("--- Ridge Regression ---")
     model = linear_model.Ridge(normalize = True)
     model = model.fit(X, y)
-    getErrors(model, X, y)
-
-    # print("--- SGD Regressor ---")
-    #model = linear_model.SGDRegressor()
-    #model = model.fit(X, y)
-    #getErrors(model, X, y)
+    metricEvaluation(model, X, y)
 
     print("--- K Nearest Neighbors ---")
     model = neighbors.KNeighborsRegressor(5)
     model = model.fit(X, y)
-    getErrors(model, X, y)
+    metricEvaluation(model, X, y)
+
+    print("--- SVM Regression ---")
+    model = svm.SVR()
+    model = model.fit(X, y)
+    metricEvaluation(model, X, y)
 
     return
 
-def getErrors(model, X, y):
+
+def metricEvaluation(model, X, y):
     # RMS Error
     mean_squared_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_squared_error") * -1
+    mean_squared_error = normaliseScores(mean_squared_error)
     root_mean_squared_error = np.sqrt(mean_squared_error)
     # Absoulte mean error
     abs_mean_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_error = abs_mean_error * -1
-    abs_mean_error = abs_mean_error.mean()
+    abs_mean_error = normaliseScores(abs_mean_error)
     # R2 score
     r2_score = cross_val_score(model, X, y, cv=10, scoring="r2")
+    r2_score = normaliseScores(r2_score)
     # Median absolute error
     median_absolute_error = cross_val_score(model, X, y, cv=10, scoring="neg_median_absolute_error") * -1
+    median_absolute_error = normaliseScores(median_absolute_error)
     # Mean squared log error
     mean_squared_log_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_squared_log_error") * -1
+    mean_squared_log_error = normaliseScores(mean_squared_log_error)
+
+    #Time metric:
 
     print("Mean squared log error =", mean_squared_log_error.mean())
     print("Median absolute error  =", median_absolute_error.mean())
     print("R2 score               =", r2_score.mean())
     print("RMS error              =", root_mean_squared_error.mean())
-    print("Absolute mean error    =", abs_mean_error)
+    print("Absolute mean error    =", abs_mean_error.mean())
+
 
 def trans_col(column):
     trans_list = LabelEncoder().fit_transform(column.tolist())
