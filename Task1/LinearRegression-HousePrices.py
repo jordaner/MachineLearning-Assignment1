@@ -15,6 +15,16 @@ def transformColumn(column):
     transformed_series.set_value(100, 2)
     return transformed_series
 
+def normaliseScores(scores):
+    old_max = max(scores)
+    old_min = min(scores)
+    old_range = old_max - old_min
+    new_min = 0
+    new_max = 1
+    normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
+    return normalised_scores
+
+
 
 features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'Alley',	'LotShape',	'LandContour',	'Utilities',	'LotConfig',
@@ -50,6 +60,9 @@ while i<len(samples_sizes):
     # print(X)
     y = df.SalePrice
 
+    #vec = DictVectorizer(sparse=True, dtype=int)
+#    X = vec.fit_transform(X1)
+
     #X_train, X_test, y_train, y_test, = train_test_split(X,y,test_size=0.3)
 
     #print(X_train.shape, y_train.shape)
@@ -77,18 +90,18 @@ while i<len(samples_sizes):
 
     #print(predictions[0:5])
 
-    NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
-
+    NMSE_results = cross_val_score(lm, X, y, cv=10, scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_results = NMSE_results * -1
-
     RMS_results = np.sqrt(NMSE_results)
-
+    RMS_results = normaliseScores(RMS_results)
     mean_error = RMS_results.mean()
 
-
-    abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
+    abs_mean_error = cross_val_score(lm, X, y, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_error = abs_mean_error * -1
+    abs_mean_error = normaliseScores(abs_mean_error)
     abs_mean_error = abs_mean_error.mean()
+
+
 
 
     print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)

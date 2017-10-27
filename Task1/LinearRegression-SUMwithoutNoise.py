@@ -7,6 +7,15 @@ import pandas as pd
 from sklearn.metrics import mean_squared_log_error
 from sklearn.metrics import mean_absolute_error
 
+def normaliseScores(scores):
+    old_max = max(scores)
+    old_min = min(scores)
+    old_range = old_max - old_min
+    new_min = 0
+    new_max = 1
+    normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
+    return normalised_scores
+
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 #columns = "Feature 1 Feature 2 Feature 3 Feature 4 Feature 5 Feature 6 Feature 7 Feature 8 Feature 9 Feature 10".split()
@@ -42,32 +51,22 @@ while i<len(samples_sizes):
 
     lm = linear_model.LinearRegression(normalize=True)
 
-    NMSE_results= cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_error") # Choose another regression metric
-
+    NMSE_results = cross_val_score(lm, X, y, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_results = NMSE_results * -1
-
     RMS_results = np.sqrt(NMSE_results)
-
+    RMS_results = normaliseScores(RMS_results)
     mean_error = RMS_results.mean()
 
- #   NMSLE_results = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_squared_log_error")
-
- #   NMSLE_results = NMSLE_results * -1
-
- #   MSLE_results = math.log(np.sqrt(MSLE_results))
-
- #   mean_error2 = mean_squared_log_error(y, lm.predict(X))
-
-    abs_mean_error = cross_val_score(lm,X,y,cv=10,scoring="neg_mean_absolute_error")
+    abs_mean_error = cross_val_score(lm, X, y, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_error = abs_mean_error * -1
+    abs_mean_error = normaliseScores(abs_mean_error)
     abs_mean_error = abs_mean_error.mean()
 
-
     print("Error with sample size of ", samples_sizes[i], "for mean squared error = ", mean_error)
-
     print("Error with sample size of ", samples_sizes[i], "for absolute mean error =", abs_mean_error)
 
     i += 1
+
     #model = lm.fit(X_train,y_train)
     #predictions = lm.predict(X_test)
 
