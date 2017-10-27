@@ -20,6 +20,7 @@ def transformValueToClassValue(value):
     else:
         return round(value/100000)
 
+
 def getrmse(number):
     number = number * -1
 
@@ -27,6 +28,7 @@ def getrmse(number):
 
     number = number.mean()
     return number
+
 
 features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'Alley',	'LotShape',	'LandContour',	'Utilities',	'LotConfig',
@@ -45,7 +47,7 @@ features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'EnclosedPorch',	'3SsnPorch',	'ScreenPorch',	'PoolArea',	'PoolQC',	'Fence',
             'MiscFeature',	'MiscVal',	'MoSold',	'YrSold',	'SaleType',	'SaleCondition']
 
-df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",",nrows = 10000)
+df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",")
 X = df.loc[:,features]
 y = df.SalePrice
 
@@ -59,23 +61,23 @@ y = [transformValueToClassValue(i) for i in (y.tolist())]
 y = pd.Series(data=y)
 
 model = model.fit(X, y)
-NMSE_results= cross_val_score(model,X,y,cv=10,scoring="neg_mean_squared_error")
 
-mean_error = getrmse(NMSE_results)
-
+# RMS Error
+mean_squared_error= cross_val_score(model,X,y,cv=10,scoring="neg_mean_squared_error") * -1
+root_mean_squared_error = np.sqrt(mean_squared_error)
+# Absoulte mean error
 abs_mean_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_absolute_error")
 abs_mean_error = abs_mean_error * -1
 abs_mean_error = abs_mean_error.mean()
-
+# R2 score
 r2_score = cross_val_score(model, X, y, cv = 10, scoring = "r2")
+# Median absolute error
 median_absolute_error = cross_val_score(model, X, y, cv = 10, scoring = "neg_median_absolute_error") * -1
+# Mean squared log error
 mean_squared_log_error = cross_val_score(model, X, y, cv = 10, scoring = "neg_mean_squared_log_error") * -1
-
-#print(mean_squared_log_error)
-#print(median_absolute_error)
 
 print("Mean squared log error with sample size of 10000 =", mean_squared_log_error.mean())
 print("Median absolute error with sample size of 10000 =", median_absolute_error.mean())
 print("R2 score with sample size of 10000 =", r2_score.mean())
-print("RMS error with sample size of 10000 =", mean_error)
+print("RMS error with sample size of 10000 =", root_mean_squared_error)
 print("Absolute mean error with sample size of 10000 for absolute mean error =", abs_mean_error)

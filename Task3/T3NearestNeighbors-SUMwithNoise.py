@@ -15,8 +15,6 @@ features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningl
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 le = preprocessing.LabelEncoder()
 
-#while i<len(samples_sizes):
-
 df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise",sep=";",nrows = 10000)
 
 catnum = df["Noisy Target Class"].tolist()
@@ -28,7 +26,7 @@ n_neighbors = 5
 
 
 for i, weights in enumerate(['uniform', 'distance']):
-    lr = neighbors.KNeighborsRegressor(n_neighbors, weights=weights)
+    lr = neighbors.KNeighborsRegressor(5, weights=weights)
 
 #Needed to avoid members of target class being less that the number of folds
 NMSE_results = cross_val_score(lr, X, y, cv=10,
@@ -47,6 +45,3 @@ abs_mean_error = abs_mean_error.mean()
 print("Error with sample size of 10000 for mean squared error = ", mean_error)
 
 print("Error with sample size of 10000 for absolute mean error =", abs_mean_error)
-
-
- #   i += 1
