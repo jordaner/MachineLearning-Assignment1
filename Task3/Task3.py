@@ -59,13 +59,17 @@ def metricEvaluation(model, X, y):
     mean_squared_log_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_squared_log_error") * -1
     mean_squared_log_error = normaliseScores(mean_squared_log_error)
 
-    #Time metric:
-
-    print("Mean squared log error =", mean_squared_log_error.mean())
-    print("Median absolute error  =", median_absolute_error.mean())
-    print("R2 score               =", r2_score.mean())
-    print("RMS error              =", root_mean_squared_error.mean())
-    print("Absolute mean error    =", abs_mean_error.mean())
+    # Runtime metric
+    start_time = time.time()
+    cross_val_score(model, X, y, cv=10)
+    runtime = time.time() - start_time
+    print("Runtime                =" , runtime)
+    print("Mean squared log error            =", mean_squared_log_error.mean())
+    print("Median absolute error             =", median_absolute_error.mean())
+    print("R2 score                          =", r2_score.mean())
+    print("RMS error                         =", root_mean_squared_error.mean())
+    print("Absolute mean error               =", abs_mean_error.mean())
+    print("Absolute mean error per unit time =", (abs_mean_error.mean()/runtime))
 
 
 def trans_col(column):
