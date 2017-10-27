@@ -105,8 +105,7 @@ for i in range(len(datasets)):
     currentFeatures = features[i]
     currentSeparator = separators[i]
     currentTarget = targets[i]
-    dataframe = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\" + datasets[i] + ".csv",
-                            sep=currentSeparator,nrows=sampleSize)
+    dataframe = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/" + datasets[i] + ".csv",sep=currentSeparator,nrows=sampleSize)
     X = dataframe.loc[:, currentFeatures]
     y = dataframe[currentTarget]
 

@@ -24,6 +24,15 @@ def transformValueToClassValue(value):
     else:
         return round(value/100000)
 
+def normaliseScores(scores):
+    old_max = max(scores)
+    old_min = min(scores)
+    old_range = old_max - old_min
+    new_min = 0
+    new_max = 1
+    normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
+    return normalised_scores
+
 sumFeatures = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 
@@ -53,9 +62,9 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    sumWithoutNoise = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithoutNoise", sep=";", nrows=samples_sizes[i])
+    sumWithoutNoise = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithoutNoise.csv", sep=";", nrows=samples_sizes[i])
 
-    sumWithNoise = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithNoise", sep=";",nrows=samples_sizes[i])
+    sumWithNoise = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/The SUM dataset, with noise.csv", sep=";",nrows=samples_sizes[i])
 
     whiteWine = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/winequality-white.csv", sep=";", nrows=samples_sizes[i])
 
@@ -91,18 +100,22 @@ while i<len(samples_sizes):
 
     NMSE_resultsWithoutLR = cross_val_score(lm, sumWithoutX, sumWithoutY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsWithoutLR = NMSE_resultsWithoutLR * -1
-    RMS_resultsWithoutLR = np.sqrt(NMSE_resultsWithoutLR)                                                                           #LINEAR REGRESSION SUM WITHOUT NOISE
+    RMS_resultsWithoutLR = np.sqrt(NMSE_resultsWithoutLR)  # LINEAR REGRESSION SUM WITHOUT NOISE
+    RMS_resultsWithoutLR = normaliseScores(RMS_resultsWithoutLR)
     mean_errorWithoutLR = RMS_resultsWithoutLR.mean()
     abs_mean_errorWithoutLR = cross_val_score(lm, sumWithoutX, sumWithoutY, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorWithoutLR = abs_mean_errorWithoutLR * -1
+    abs_mean_errorWithoutLR = normaliseScores(abs_mean_errorWithoutLR)
     abs_mean_errorWithoutLR = abs_mean_errorWithoutLR.mean()
 
     NMSE_resultsWithoutRR = cross_val_score(rr, sumWithoutX, sumWithoutY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsWithoutRR = NMSE_resultsWithoutRR * -1
     RMS_resultsWithoutRR = np.sqrt(NMSE_resultsWithoutRR)  # LINEAR REGRESSION SUM WITHOUT NOISE
-    mean_errorWithoutRR = RMS_resultsWithoutRR.mean()                                                                                #RIDGE REGRESSION SUM WITHOUT NOISE
+    RMS_resultsWithoutRR = normaliseScores(RMS_resultsWithoutRR)
+    mean_errorWithoutRR = RMS_resultsWithoutRR.mean()  # RIDGE REGRESSION SUM WITHOUT NOISE
     abs_mean_errorWithoutRR = cross_val_score(lm, sumWithoutX, sumWithoutY, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorWithoutRR = abs_mean_errorWithoutRR * -1
+    abs_mean_errorWithoutRR = normaliseScores(abs_mean_errorWithoutRR)
     abs_mean_errorWithoutRR = abs_mean_errorWithoutRR.mean()
 
     ACC_resultsLogWithout = cross_val_score(lr, sumWithoutX, sumWithoutY_b, cv=kfold, scoring="accuracy")
@@ -117,21 +130,24 @@ while i<len(samples_sizes):
     mean_ACCNnWithout = ACC_resultsNnWithout.mean()
     mean_PRECNnWithout = PREC_resultsNnWithout.mean()
 
-
     NMSE_resultsWithLR = cross_val_score(lm, sumWithX, sumWithY_b, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsWithLR = NMSE_resultsWithLR * -1
-    RMS_resultsWithLR = np.sqrt(NMSE_resultsWithLR)                                                                         # LINEAR REGRESSION SUM WITH NOISE
+    RMS_resultsWithLR = np.sqrt(NMSE_resultsWithLR)  # LINEAR REGRESSION SUM WITH NOISE
+    RMS_resultsWithLR = normaliseScores(RMS_resultsWithLR)
     mean_errorWithLR = RMS_resultsWithLR.mean()
     abs_mean_errorWithLR = cross_val_score(lm, sumWithX, sumWithY_b, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorWithLR = abs_mean_errorWithLR * -1
+    abs_mean_errorWithLR = normaliseScores(abs_mean_errorWithLR)
     abs_mean_errorWithLR = abs_mean_errorWithLR.mean()
 
-    NMSE_resultsWithRR = cross_val_score(rr, sumWithX, sumWithY, cv=10, scoring="neg_mean_squared_error")  # Choose another regression metric
+    NMSE_resultsWithRR = cross_val_score(rr, sumWithX, sumWithY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsWithRR = NMSE_resultsWithRR * -1
     RMS_resultsWithRR = np.sqrt(NMSE_resultsWithRR)  # LINEAR REGRESSION SUM WITH NOISE
+    RMS_resultsWithRR = normaliseScores(RMS_resultsWithRR)
     mean_errorWithRR = RMS_resultsWithRR.mean()
-    abs_mean_errorWithRR = cross_val_score(rr, sumWithX, sumWithY, cv=10, scoring="neg_mean_absolute_error")                # RIDGE REGRESSION SUM WITH NOISE
+    abs_mean_errorWithRR = cross_val_score(rr, sumWithX, sumWithY, cv=10,scoring="neg_mean_absolute_error")  # RIDGE REGRESSION SUM WITH NOISE
     abs_mean_errorWithRR = abs_mean_errorWithRR * -1
+    abs_mean_errorWithRR = normaliseScores(abs_mean_errorWithRR)
     abs_mean_errorWithRR = abs_mean_errorWithRR.mean()
 
     ACC_resultsLogWith = cross_val_score(lr, sumWithX, sumWithY_b, cv=kfold, scoring="accuracy")
@@ -148,18 +164,22 @@ while i<len(samples_sizes):
 
     NMSE_resultsWhiteWineLR = cross_val_score(lm, wineX, wineY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsWhiteWineLR = NMSE_resultsWhiteWineLR * -1
-    RMS_resultsWhiteWineLR = np.sqrt(NMSE_resultsWhiteWineLR)                                                           # LINEAR REGRESSION WHITE WINE DATA SET
+    RMS_resultsWhiteWineLR = np.sqrt(NMSE_resultsWhiteWineLR)
+    RMS_resultsWhiteWineLR = normaliseScores(RMS_resultsWhiteWineLR)  # LINEAR REGRESSION WHITE WINE DATA SET
     mean_errorWhiteWineLR = RMS_resultsWhiteWineLR.mean()
     abs_mean_errorWhiteWineLR = cross_val_score(lm, wineX, wineY, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorWhiteWineLR = abs_mean_errorWhiteWineLR * -1
+    abs_mean_errorWhiteWineLR = normaliseScores(abs_mean_errorWhiteWineLR)
     abs_mean_errorWhiteWineLR = abs_mean_errorWhiteWineLR.mean()
 
-    NMSE_resultsWhiteWineRR = cross_val_score(rr, wineX, wineY, cv=10, scoring="neg_mean_squared_error")  # Choose another regression metric
+    NMSE_resultsWhiteWineRR = cross_val_score(rr, wineX, wineY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsWhiteWineRR = NMSE_resultsWhiteWineRR * -1
-    RMS_resultsWhiteWineRR = np.sqrt(NMSE_resultsWhiteWineRR)                                                              # RIDGE REGRESSION WHITE WINE DATA SET
+    RMS_resultsWhiteWineRR = np.sqrt(NMSE_resultsWhiteWineRR)
+    RMS_resultsWhiteWineRR = normaliseScores(RMS_resultsWhiteWineRR)  # RIDGE REGRESSION WHITE WINE DATA SET
     mean_errorWhiteWineRR = RMS_resultsWhiteWineRR.mean()
     abs_mean_errorWhiteWineRR = cross_val_score(rr, wineX, wineY, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorWhiteWineRR = abs_mean_errorWhiteWineRR * -1
+    abs_mean_errorWhiteWineRR = normaliseScores(abs_mean_errorWhiteWineRR)
     abs_mean_errorWhiteWineRR = abs_mean_errorWhiteWineRR.mean()
 
     ACC_resultsLogWhiteWine = cross_val_score(lr, wineX, wineY, cv=kfold, scoring="accuracy")
@@ -188,17 +208,21 @@ while i<len(samples_sizes):
     NMSE_resultsHouseLR = cross_val_score(lm, houseX, houseY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsHouseLR = NMSE_resultsHouseLR * -1
     RMS_resultsHouseLR = np.sqrt(NMSE_resultsHouseLR)
-    mean_errorHouseLR = RMS_resultsHouseLR.mean()                                                                       # LINEAR REGRESSION HOUSE PRICES DATA SET
-    abs_mean_errorHouseLR = cross_val_score(lm, houseX, houseY, cv=10, scoring="neg_mean_absolute_error")
+    RMS_resultsHouseLR = normaliseScores(RMS_resultsHouseLR)
+    mean_errorHouseLR = RMS_resultsHouseLR.mean()
+    abs_mean_errorHouseLR = cross_val_score(lm, sumWithoutX, sumWithoutY, cv=10,scoring="neg_mean_absolute_error")  # LINEAR REGRESSION HOUSE PRICES DATA SETabs_mean_errorHouseLR = cross_val_score(lm, houseX, houseY, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorHouseLR = abs_mean_errorHouseLR * -1
+    abs_mean_errorHouseLR = normaliseScores(abs_mean_errorHouseLR)
     abs_mean_errorHouseLR = abs_mean_errorHouseLR.mean()
 
     NMSE_resultsHouseRR = cross_val_score(rr, houseX, houseY, cv=10,scoring="neg_mean_squared_error")  # Choose another regression metric
     NMSE_resultsHouseRR = NMSE_resultsHouseRR * -1
     RMS_resultsHouseRR = np.sqrt(NMSE_resultsHouseRR)
-    mean_errorHouseRR = RMS_resultsHouseRR.mean()                                                                        # RIDGE REGRESSION HOUSE PRICES DATA SET
+    RMS_resultsHouseRR = normaliseScores(RMS_resultsHouseRR)
+    mean_errorHouseRR = RMS_resultsHouseRR.mean()  # RIDGE REGRESSION HOUSE PRICES DATA SET
     abs_mean_errorHouseRR = cross_val_score(rr, houseX, houseY, cv=10, scoring="neg_mean_absolute_error")
     abs_mean_errorHouseRR = abs_mean_errorHouseRR * -1
+    abs_mean_errorHouseRR = normaliseScores(abs_mean_errorHouseRR)
     abs_mean_errorHouseRR = abs_mean_errorHouseRR.mean()
 
     ACC_resultsLogHouse = cross_val_score(lr, houseX, logHouseY, cv=kfold, scoring="accuracy")
