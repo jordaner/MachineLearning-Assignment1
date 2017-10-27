@@ -1,6 +1,6 @@
 from sklearn import linear_model
 from sklearn.model_selection import cross_val_score,KFold
-#from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from sklearn import preprocessing
 import pandas as pd
 import numpy as np
@@ -15,7 +15,7 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    df = pd.read_csv("path",sep=";",nrows = samples_sizes[i])
+    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/TheSumDataSetWithoutNoise",sep=";",nrows = samples_sizes[i])
 
     catnum = df["Target Class"].tolist()
 

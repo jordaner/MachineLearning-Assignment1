@@ -45,7 +45,7 @@ le = preprocessing.LabelEncoder()
 i = 0
 while i<len(samples_sizes):
 
-    df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",",nrows = samples_sizes[i])
+    df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/housing dataset.csv",sep=",",nrows = samples_sizes[i])
     X = df.loc[:,features]
     y = df.SalePrice
 
