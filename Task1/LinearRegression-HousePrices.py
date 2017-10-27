@@ -4,6 +4,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
+from sklearn.feature_extraction import DictVectorizer
 
 
 def transformColumn(column):
@@ -42,6 +43,9 @@ while i<len(samples_sizes):
 
     df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/housing dataset.csv",sep=",",nrows = samples_sizes[i])
 
+    #vec = DictVectorizer(sparse=True, dtype=int)
+    #vec.fit_transform(df)
+
     X = df.loc[:,features]
     # print(X)
     y = df.SalePrice
@@ -50,6 +54,8 @@ while i<len(samples_sizes):
 
     #print(X_train.shape, y_train.shape)
     #print(X_test.shape, y_test.shape)
+
+
 
 
 
