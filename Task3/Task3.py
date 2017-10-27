@@ -63,13 +63,16 @@ def metricEvaluation(model, X, y):
     start_time = time.time()
     cross_val_score(model, X, y, cv=10)
     runtime = time.time() - start_time
-    print("Runtime                =" , runtime)
+    print("Runtime                =", runtime)
     print("Mean squared log error            =", mean_squared_log_error.mean())
     print("Median absolute error             =", median_absolute_error.mean())
     print("R2 score                          =", r2_score.mean())
     print("RMS error                         =", root_mean_squared_error.mean())
     print("Absolute mean error               =", abs_mean_error.mean())
     print("Absolute mean error per unit time =", (abs_mean_error.mean()/runtime))
+
+    times.insert(0, runtime)
+    errorPerUnitTime.insert(0, abs_mean_error.mean()/runtime)
 
 
 def trans_col(column):
@@ -79,6 +82,9 @@ def trans_col(column):
     trans_series.set_value(100, 2)
     return trans_series
 
+
+times = []
+errorPerUnitTime = []
 
 sampleSize = 10000
 datasets = ['The SUM dataset, with noise', 'housing dataset']
@@ -113,9 +119,18 @@ for i in range(len(datasets)):
     X = dataframe.loc[:, currentFeatures]
     y = dataframe[currentTarget]
 
+    # Dealing with categorical data inside housing dataset
     if datasets[i] == 'housing dataset':
         for column in X:
             if "object" in str(X[column].dtype): X[column] = trans_col(X[column])
         X = X.replace(np.nan, 0)
 
     executeAlgorithms(X, y)
+
+    times = normaliseScores(times)
+    errorPerUnitTime = normaliseScores(errorPerUnitTime)
+
+    print(times)
+    print(errorPerUnitTime)
+    times = []
+    errorPerUnitTime = []
