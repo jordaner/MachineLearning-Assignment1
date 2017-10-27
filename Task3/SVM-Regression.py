@@ -7,12 +7,14 @@ import pandas as pd
 import numpy as np
 from sklearn import svm
 
-features = ['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides']
+# features = ['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides']
+features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
+            'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 
-df = pd.read_csv("/Users/markloughman/Desktop/Machine Learning/DATA/winequality-white.csv", sep=";")
+df = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\The SUM dataset, with noise.csv", sep=";")
 
 X = df.loc[:,features]
-Y = df.quality
+Y = df["Noisy Target"]
 kf = KFold(n_splits=10)
 
 

@@ -4,25 +4,26 @@ from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 import numpy as np
 
+
 def executeAlgorithms(X, y):
+    print("--- Decision Tree ---")
     model = tree.DecisionTreeRegressor()
     model = model.fit(X, y)
-    print("--- Decision Tree ---")
     getErrors(model, X, y)
 
+    print("--- Ridge Regression ---")
     model = linear_model.Ridge(normalize = True)
     model = model.fit(X, y)
-    print("--- Ridge Regression ---")
     getErrors(model, X, y)
 
-    model = linear_model.SGDRegressor()
-    model = model.fit(X, y)
-    print("--- SGD Regressor ---")
-    getErrors(model, X, y)
+    # print("--- SGD Regressor ---")
+    #model = linear_model.SGDRegressor()
+    #model = model.fit(X, y)
+    #getErrors(model, X, y)
 
+    print("--- K Nearest Neighbors ---")
     model = neighbors.KNeighborsRegressor(5)
     model = model.fit(X, y)
-    print("--- K Nearest Neighbors ---")
     getErrors(model, X, y)
 
     return
@@ -42,13 +43,22 @@ def getErrors(model, X, y):
     # Mean squared log error
     mean_squared_log_error = cross_val_score(model, X, y, cv=10, scoring="neg_mean_squared_log_error") * -1
 
-    print("Mean squared log error with sample size of 10000 =", mean_squared_log_error.mean())
-    print("Median absolute error with sample size of 10000 =", median_absolute_error.mean())
-    print("R2 score with sample size of 10000 =", r2_score.mean())
-    print("RMS error with sample size of 10000 =", root_mean_squared_error.mean())
-    print("Absolute mean error with sample size of 10000 for absolute mean error =", abs_mean_error)
+    print("Mean squared log error =", mean_squared_log_error.mean())
+    print("Median absolute error  =", median_absolute_error.mean())
+    print("R2 score               =", r2_score.mean())
+    print("RMS error              =", root_mean_squared_error.mean())
+    print("Absolute mean error    =", abs_mean_error)
 
-datasets = ['The SUM dataset, with noise'] # , 'housing dataset'
+def trans_col(column):
+    trans_list = LabelEncoder().fit_transform(column.tolist())
+    trans_series = pd.Series(data=trans_list)
+    trans_series.replace(np.NaN, 0)
+    trans_series.set_value(100, 2)
+    return trans_series
+
+
+sampleSize = 10000
+datasets = ['The SUM dataset, with noise', 'housing dataset']
 SUMwithNoise_features = ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5 (meaningless but please still use it)',
             'Feature 6', 'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10']
 housingdataset_features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
@@ -72,11 +82,18 @@ separators = [';', ',']
 targets = ['Noisy Target', 'SalePrice']
 # For loop iterating over the various datasets
 for i in range(len(datasets)):
+    print("----- " + datasets[i] + " -----")
     currentFeatures = features[i]
     currentSeparator = separators[i]
     currentTarget = targets[i]
     dataframe = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\" + datasets[i] + ".csv",
-                            sep=currentSeparator,nrows = 10000)
+                            sep=currentSeparator,nrows=sampleSize)
     X = dataframe.loc[:, currentFeatures]
     y = dataframe[currentTarget]
+
+    if datasets[i] == 'housing dataset':
+        for column in X:
+            if "object" in str(X[column].dtype): X[column] = trans_col(X[column])
+        X = X.replace(np.nan, 0)
+
     executeAlgorithms(X, y)

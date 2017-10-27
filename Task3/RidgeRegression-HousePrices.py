@@ -30,6 +30,7 @@ features = ['MSSubClass',	'MSZoning',	'LotFrontage',	'LotArea',	'Street',
             'EnclosedPorch',	'3SsnPorch',	'ScreenPorch',	'PoolArea',	'PoolQC',	'Fence',
             'MiscFeature',	'MiscVal',	'MoSold',	'YrSold',	'SaleType',	'SaleCondition']
 
+data = pd.read_csv("C:\\Users\\ericj\\PycharmProjects\\Assignment1\\housing dataset.csv",sep=",")
 X = data.loc[:,features]
 y = data.SalePrice
 lin_mod = linear_model.Ridge(normalize = True)
