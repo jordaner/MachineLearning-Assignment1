@@ -7,6 +7,15 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import SGDRegressor
 
+def normaliseScores(scores):
+    old_max = max(scores)
+    old_min = min(scores)
+    old_range = old_max - old_min
+    new_min = 0
+    new_max = 1
+    normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
+    return normalised_scores
+
 features = ['Feature 1','Feature 2','Feature 3','Feature 4','Feature 5 (meaningless but please still use it)',
             'Feature 6','Feature 7','Feature 8','Feature 9','Feature 10']
 
@@ -45,10 +54,7 @@ def evaluate(X, Y, kf):
 
 
 sgd_regressor = SGDRegressor()
-abs_error = cross_val_score(sgd_regressor, X, Y, cv = kf, scoring ='neg_mean_absolute_error')
+abs_error = cross_val_score(sgd_regressor, X, Y, cv = kf, scoring ='neg_mean_absolute_error')* -1
+abs_error = normaliseScores(abs_error)
 mean_score = abs_error.mean()
-print("mean absolute error:", -1 * mean_score)
-
-
-
-
+print("mean absolute error:", mean_score)
