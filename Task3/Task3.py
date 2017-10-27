@@ -4,6 +4,14 @@ from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 import numpy as np
 
+def normaliseScores(scores):
+    old_max = max(scores)
+    old_min = min(scores)
+    old_range = old_max - old_min
+    new_min = 0
+    new_max = 1
+    normalised_scores = np.array([(new_min + (((x-old_min)*(new_max-new_min)))/(old_max - old_min)) for x in scores])
+    return normalised_scores
 
 def executeAlgorithms(X, y):
     print("--- Decision Tree ---")
